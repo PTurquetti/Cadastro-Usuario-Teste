@@ -13,8 +13,9 @@ var emailHelp = document.querySelector("#inputEmailHelp");
 var senha = document.querySelector("#inputPassword");
 var senhaHelp = document.querySelector("#inputPasswordHelp");
 
-var submit = document.querySelector("#buttonSubmit");
-var submitHelp = document.querySelector("#buttonSubmitHelp");
+const form = document.getElementById("singleForm");
+var resultado = document.querySelector("#inputResult");
+
 
 
 // Lista de eventos
@@ -22,11 +23,26 @@ nome.addEventListener('focusout', validarNome);
 ano.addEventListener('focusout', validarAno);
 email.addEventListener('focusout', validarEmail);
 senha.addEventListener('focusout', validarSenha);
+form.addEventListener("submit", validarForm);
 
-submit.addEventListener('onclick', validarQuestionario);
 
-function validarQuestionario(e){
-    
+
+function validarForm(e){
+
+    e.preventDefault();
+
+    const nomeValido = validarNome({ target: nome });
+    const anoValido = validarAno({ target: ano });
+    const emailValido = validarEmail({ target: email });
+    const senhaValido = validarSenha({ target: senha });
+
+    if(nomeValido && anoValido && emailValido && senhaValido){
+        resultado.innerText = "Seus dados foram registrados";
+        resultado.style.color = "green";
+    }else{
+        resultado.innerText = "Seus dados não foram registrados";
+        resultado.style.color = "red";
+    }
 }
 
 
@@ -40,11 +56,13 @@ function validarNome(e){
         //Se não cumpre a expressao regular
         nomeHelp.textContent = "Formato de nome inválido"; 
         nomeHelp.style.color="red";
+        return false;
     }
     else{
         // Se o nome é valido
         nomeHelp.textContent = "Nome válido"; 
         nomeHelp.style.color="green";
+        return true;
     }       
 }
 
@@ -58,11 +76,13 @@ function validarAno(e){
         // Se o ano digitado não está no intervale
         anoHelp.textContent = "Formato de ano inválido";
         anoHelp.style.color="red";
+        return false;
     }
     else{
         // Se o ano é valido
         anoHelp.textContent = "Ano válido";
         anoHelp.style.color="green";
+        return true;
     }
 }
 
@@ -75,11 +95,13 @@ function validarEmail(e){
         // Se não cumpre a expressão regular - Ano inválido
         emailHelp.textContent = "Formato de email inválido";
         emailHelp.style.color="red";
+        return false;
     }
     else{
         // Ano válido
         emailHelp.textContent = "Email válido";
         emailHelp.style.color="green"; 
+        return true;
     }
 }
 
@@ -99,6 +121,7 @@ function validarSenha(e){
         //Não atinge tamanho mínimo ou excede o tamanho máximo
         senhaHelp.textContent = "A senha precisa ter de 6 a 20 caracteres";
         senhaHelp.style.color="red";
+        return false;
     }else{
         //Tem tamanho certo. Testar outras condicoes
         
@@ -109,11 +132,13 @@ function validarSenha(e){
             //Se não tem ocorrencia de algum desses
             senhaHelp.textContent = "Senha inválida. É necessário ao menos um caractere especial, um número e uma letra";
             senhaHelp.style.color="red";
+            return false;
         }
         else if(senha.indexOf(nome.value.trim()) !== -1 || senha.indexOf(ano.value.trim()) !== -1){
             //Se a senha contem a substring inserida no Nome ou no Ano
             senhaHelp.textContent = "Senha inválida. Não é permitido repetir informações inseridas no campo de Nome ou Ano de Nascimento";
             senhaHelp.style.color="red";
+            return false;
             
         }
         else{
@@ -145,8 +170,11 @@ function validarSenha(e){
                     // Default - nunca deve chegar aqui
                     senhaHelp.textContent = "Erro inesperado";
                     senhaHelp.style.color="purple";
+                    return false;
                     break;
             }
+
+            return true;
         }
     }
 }
