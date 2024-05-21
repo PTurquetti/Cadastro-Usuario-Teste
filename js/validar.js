@@ -49,22 +49,25 @@ function validarForm(e){
 
 // Validando Nome
 function validarNome(e){ 
-    //Verifica se nome tem ao menos 6 caracteres e se todos eles são letras
-    const regexNome = /^[a-zA-Z]{6,}$/;
-    
-    if(e.target.value.trim().match(regexNome)==null){
-        //Se não cumpre a expressao regular
+    // Verifica se o nome tem ao menos 6 caracteres, se todos eles são letras ou espaços e se cada parte do nome tem pelo menos uma letra
+    const regexNome = /^(?=.*[a-zA-ZÀ-ÿ])[a-zA-ZÀ-ÿ\s]{6,}$/;
+
+    if(e.target.value.trim().match(regexNome) == null){
+        // Se não cumpre a expressão regular
         nomeHelp.textContent = "Nome inválido"; 
-        nomeHelp.style.color="red";
+        nomeHelp.style.color = "red";
         return false;
-    }
-    else{
-        // Se o nome é valido
+    } else {
+        // Se o nome é válido
         nomeHelp.textContent = "Nome válido"; 
-        nomeHelp.style.color="green";
+        nomeHelp.style.color = "green";
         return true;
     }       
 }
+
+// Exemplo de uso
+document.getElementById('inputName').addEventListener('input', validarNome);
+
 
 
 // Validando Ano
