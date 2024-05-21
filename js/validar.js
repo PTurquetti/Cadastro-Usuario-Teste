@@ -50,7 +50,7 @@ function validarForm(e){
 // Validando Nome
 function validarNome(e){ 
     //Verifica se nome tem ao menos 6 caracteres e se todos eles são letras
-    const regexNome = /^[a-zA-Z]{7,}$/;
+    const regexNome = /^[a-zA-Z]{6,}$/;
     
     if(e.target.value.trim().match(regexNome)==null){
         //Se não cumpre a expressao regular
