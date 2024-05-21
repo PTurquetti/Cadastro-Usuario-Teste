@@ -40,7 +40,7 @@ function validarForm(e){
         resultado.innerText = "Parabéns seus dados foram registrados :)";
         resultado.style.color = "green";
     }else{
-        resultado.innerText = "Seus dados não foram registrados";
+        resultado.innerText = "Seus dados não foram registrados :(";
         resultado.style.color = "red";
     }
 }
