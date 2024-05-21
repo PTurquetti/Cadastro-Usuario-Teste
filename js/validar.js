@@ -54,7 +54,7 @@ function validarNome(e){
     
     if(e.target.value.trim().match(regexNome)==null){
         //Se não cumpre a expressao regular
-        nomeHelp.textContent = "Formato de nome inválido"; 
+        nomeHelp.textContent = "Nome inválido"; 
         nomeHelp.style.color="red";
         return false;
     }
@@ -74,7 +74,7 @@ function validarAno(e){
 
     if(anoTrimado.match(regexAno)==null){
         // Se o ano digitado não está no intervale
-        anoHelp.textContent = "Formato de ano inválido";
+        anoHelp.textContent = "Ano inválido";
         anoHelp.style.color="red";
         return false;
     }
@@ -119,7 +119,7 @@ function validarSenha(e){
     // Testando tamanho
     if(senha.length < 6 || senha.length > 20){
         //Não atinge tamanho mínimo ou excede o tamanho máximo
-        senhaHelp.textContent = "A senha precisa ter de 6 a 20 caracteres";
+        senhaHelp.textContent = "Senha inválida";
         senhaHelp.style.color="red";
         return false;
     }else{
@@ -130,13 +130,13 @@ function validarSenha(e){
         e.target.value.trim().match(regexNumero)==null ||
         e.target.value.trim().match(regexLetra)==null){
             //Se não tem ocorrencia de algum desses
-            senhaHelp.textContent = "Senha inválida. É necessário ao menos um caractere especial, um número e uma letra";
+            senhaHelp.textContent = "Senha inválida";
             senhaHelp.style.color="red";
             return false;
         }
         else if(senha.indexOf(nome.value.trim()) !== -1 || senha.indexOf(ano.value.trim()) !== -1){
             //Se a senha contem a substring inserida no Nome ou no Ano
-            senhaHelp.textContent = "Senha inválida. Não é permitido repetir informações inseridas no campo de Nome ou Ano de Nascimento";
+            senhaHelp.textContent = "Senha inválida";
             senhaHelp.style.color="red";
             return false;
             
