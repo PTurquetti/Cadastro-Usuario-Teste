@@ -66,22 +66,23 @@ function validarNome(e){
     }       
 }
 
-// Validando Ano
-function validarAno(e){
-    //Verifica se o ano vai de 1900 a 2022 e aceita somente números
-    const regexAno = /^(19\d{2}|20(?:0\d|1[0-9]|20))$/;
-    const anoTrimado = ano.value.trim();
 
-    if(anoTrimado.match(regexAno)==null){
-        // Se o ano digitado não está no intervale
+// Validando Ano
+function validarAno(e) {
+    const anoAtual = new Date().getFullYear();
+    const anoMinimo = anoAtual - 120;
+    const anoTrimado = ano.value.trim();
+    const anoNumerico = parseInt(anoTrimado, 10);
+
+    if (!/^\d{4}$/.test(anoTrimado) || anoNumerico < anoMinimo || anoNumerico > anoAtual) {
+        // Se o ano digitado não está no intervalo ou não é um número de 4 dígitos
         anoHelp.textContent = "Ano inválido";
-        anoHelp.style.color="red";
+        anoHelp.style.color = "red";
         return false;
-    }
-    else{
-        // Se o ano é valido
+    } else {
+        // Se o ano é válido
         anoHelp.textContent = "Ano válido";
-        anoHelp.style.color="green";
+        anoHelp.style.color = "green";
         return true;
     }
 }
