@@ -19,10 +19,10 @@ var resultado = document.querySelector("#inputResult");
 
 
 // Lista de eventos
-nome.addEventListener('focusout', validarNome);
-ano.addEventListener('focusout', validarAno);
-email.addEventListener('focusout', validarEmail);
-senha.addEventListener('focusout', validarSenha);
+//nome.addEventListener('focusout', validarNome);
+//ano.addEventListener('focusout', validarAno);
+//email.addEventListener('focusout', validarEmail);
+//senha.addEventListener('focusout', validarSenha);
 form.addEventListener("submit", validarForm);
 
 
